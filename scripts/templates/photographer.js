@@ -24,15 +24,15 @@ function photographerTemplate(data) {
         pName.textContent = name;
 
         //city
-        const pCity = document.createElement('p');
+        const pCity = document.createElement('h3');
         pCity.textContent = `${city}, ${country}`;
 
         //tagline
-        const pTagline = document.createElement('p');
+        const pTagline = document.createElement('b');
         pTagline.textContent = tagline;
 
         //price
-        const pPrice = document.createElement('p');
+        const pPrice = document.createElement('span');
         pPrice.textContent = `${price}€/jour`;
 
         //les éléments créés sont ajoutés comme enfants de l'élément article

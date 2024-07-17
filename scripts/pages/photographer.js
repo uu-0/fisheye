@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         img.setAttribute('alt', photographer.name);
 
         const tarif = document.createElement("p");
-        tarif.textContent = `${photographer.price}€/jour`;
+        tarif.textContent = `${photographer.price}€ / jour`;
 
         photographerInformations.appendChild(name);
         photographerInformations.appendChild(location);

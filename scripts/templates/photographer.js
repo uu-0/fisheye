@@ -11,13 +11,21 @@ function photographerTemplate(data) {
     const picture = `assets/photographers/${portrait}`;
 
     function getUserCardDOM() {
+
         //création élément article qui contiendra toutes les informations sur le photographe
         const article = document.createElement('article');
+       
+        //link
+        const link = document.createElement('a');
+        link.setAttribute("href", `../../photographer.html?id=${id}`)
 
         //picture
         const pImg = document.createElement('img');
         pImg.setAttribute("src", picture);
         pImg.setAttribute("alt", name);
+
+        //on ajt l'img comme enfant de l'élément link
+        link.appendChild(pImg);
 
         //name
         const pName = document.createElement('h2');
@@ -36,7 +44,7 @@ function photographerTemplate(data) {
         pPrice.textContent = `${price}€/jour`;
 
         //les éléments créés sont ajoutés comme enfants de l'élément article
-        article.appendChild(pImg);
+        article.appendChild(link);
         article.appendChild(pName);
         article.appendChild(pCity);
         article.appendChild(pTagline);

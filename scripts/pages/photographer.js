@@ -27,11 +27,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     function displayPhotographerInfo(photographer) {
         const photographerHeader = document.querySelector(".photograph-header");
         const photographerInformations = document.querySelector(".photograph-informations");
+        const photographerTarif = document.querySelector(".photograph-tarif");
         
         const name = document.createElement('h1');
         name.textContent = photographer.name;
         
-        const location = document.createElement('p');
+        const location = document.createElement('span');
         location.textContent = `${photographer.city}, ${photographer.country}`;
         
         const tagline = document.createElement('p');
@@ -41,10 +42,14 @@ document.addEventListener("DOMContentLoaded", async () => {
         img.setAttribute('src', `assets/photographers/${photographer.portrait}`);
         img.setAttribute('alt', photographer.name);
 
+        const tarif = document.createElement("p");
+        tarif.textContent = `${photographer.price}€/jour`;
+
         photographerInformations.appendChild(name);
         photographerInformations.appendChild(location);
         photographerInformations.appendChild(tagline);
         photographerHeader.appendChild(img);
+        photographerTarif.appendChild(tarif);
 
     }
 

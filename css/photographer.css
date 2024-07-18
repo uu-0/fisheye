@@ -157,7 +157,7 @@ form input {
 .background-modal{
     background-color:#c6c6c674;
     width: 100%;
-    height: 2200px;
+    height: 320%;
     position: absolute;
     display: none;
     z-index: 998;
@@ -167,6 +167,6 @@ form input {
     border-radius: 5px;
     border: none;
     resize: none;
-    width: 759px;
+    width: 100%;
     height: 170px;
 }

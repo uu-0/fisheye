@@ -1,9 +1,17 @@
+const header = document.querySelector("header");
+const main = document.querySelector("main");
 const modal = document.getElementById("contact_modal");
 const backgroundModal = document.querySelector(".background-modal");
+const closeBtn =   document.querySelector("#closeBtn");
 
-function displayModal() {
+function openModal() {
+    modal.setAttribute('aria-hidden', 'false');
+    main.setAttribute('aria-hidden', 'true');
+    header.setAttribute('aria-hidden', 'true');
+
     backgroundModal.style.display = "block";
 	modal.style.display = "block";
+    closeBtn.focus();
 }
 
 function closeModal() {

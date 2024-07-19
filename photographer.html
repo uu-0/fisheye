@@ -10,24 +10,24 @@
   </head>
   <body>
     <div class="background-modal"></div>
-    <header>
+    <header id="header" aria-hidden="true">
       <img src="assets/images/logo.png" class="logo" />
     </header>
-    <main id="main">
+    <main id="main" aria-hidden="true">
       <div class="photograph-header">
         <div class="photograph-informations"></div>
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" onclick="openModal()">Contactez-moi</button>
       </div>
       <div class="media-section">
       </div>
     </main>
-    <div class="photograph-tarif">
-    </div>
+    <div class="photograph-tarif"></div>
+    
     <div id="contact_modal">
-			<div class="modal">
+			<div class="modal" aria-hidden="false" role="dialog">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img id="closeBtn" src="assets/icons/close.svg" onclick="closeModal()" />
         </header>
 				<form>
 					<div>

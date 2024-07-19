@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const URLparam = new URL(document.location).searchParams;
     const id = URLparam.get("id");
 
-    //récupère les données
+    // Récupère les données
     async function getPhotographers() {
         try {
             const response = await fetch('data/photographers.json'); // chemin fichier JSON
@@ -15,15 +15,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const photographersData = await getPhotographers();
 
-    //récupère le photographe correspondant
+    // Récupère le photographe correspondant
     const photographerInfo = photographersData.photographers.find((photographer) => 
         Number(id) === Number(photographer.id));
     
-    //récupère les médias correspondants
+    // Récupère les médias correspondants
     const photographerMedias = photographersData.media.filter((media) => 
         Number(id) === Number(media.photographerId));
     
-    //affiche les informations du photographe
+    // Affiche les informations du photographe
     function displayPhotographerInfo(photographer) {
         const photographerHeader = document.querySelector(".photograph-header");
         const photographerInformations = document.querySelector(".photograph-informations");
@@ -31,16 +31,20 @@ document.addEventListener("DOMContentLoaded", async () => {
         
         const name = document.createElement('h1');
         name.textContent = photographer.name;
+        name.setAttribute('tabindex', '0');
         
         const location = document.createElement('span');
         location.textContent = `${photographer.city}, ${photographer.country}`;
-        
+        location.setAttribute('tabindex', '0');
+
         const tagline = document.createElement('p');
         tagline.textContent = photographer.tagline;
+        tagline.setAttribute('tabindex', '0');
         
         const img = document.createElement('img');
         img.setAttribute('src', `assets/photographers/${photographer.portrait}`);
         img.setAttribute('alt', photographer.name);
+        img.setAttribute('tabindex', '0');
 
         const tarif = document.createElement("p");
         tarif.textContent = `${photographer.price}€ / jour`;
@@ -50,27 +54,27 @@ document.addEventListener("DOMContentLoaded", async () => {
         photographerInformations.appendChild(tagline);
         photographerHeader.appendChild(img);
         photographerTarif.appendChild(tarif);
-
     }
 
-    //factory pour les médias
-    function mediaFactory(media) {
+    // Factory pour les médias
+    function mediaFactory(media, index) {
         const mediaElement = document.createElement('div');
         mediaElement.classList.add('media');
         
         let mediaContent;
 
-        //si le média est une image
+        // Si le média est une image
         if (media.image) {
             mediaContent = document.createElement('img');
             mediaContent.setAttribute('src', `assets/medias/${media.photographerId}/${media.image}`);
             mediaContent.setAttribute('alt', media.title);
+            mediaContent.setAttribute('tabindex', '0');
         } 
-        // si le média est une vidéo
+        // Si le média est une vidéo
         else if (media.video) {
             mediaContent = document.createElement('video');
-            mediaContent.setAttribute('controls', '');
             mediaContent.setAttribute('alt', media.title);
+            mediaContent.setAttribute('tabindex', '0'); 
 
             const source = document.createElement('source');
             source.setAttribute('src', `assets/medias/${media.photographerId}/${media.video}`);
@@ -90,7 +94,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     //affiche les médias du photographe
     function displayPhotographerMedias(medias) {
-
         const mediaSection = document.querySelector(".media-section");
         
         medias.forEach((media) => {

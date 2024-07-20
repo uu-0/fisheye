@@ -118,8 +118,10 @@ form input {
 
 }
 
-.media-section h2{
+.media-section h1{
     text-align: left;
+    font-size: 24px;
+    font-weight: 400;
     color: #901C1C;
 }
 

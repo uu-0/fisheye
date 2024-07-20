@@ -89,10 +89,20 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     //affiche les médias du photographe
     function displayPhotographerMedias(medias) {
+
         const mediaSection = document.querySelector(".media-section");
+
         medias.forEach((media, index) => {
+            const mediaBloc = document.createElement('div');
+            mediaSection.appendChild(mediaBloc);
+
             const mediaElement = mediaFactory(media, index);
-            mediaSection.appendChild(mediaElement);
+            mediaBloc.appendChild(mediaElement);
+
+            const mediaTilte = document.createElement('h1');
+            mediaTilte.textContent = media.title;
+            mediaBloc.appendChild(mediaTilte);
+
             //event listener pour ouvrir lightbox et affiché le média correspondant
             mediaElement.addEventListener('click', () => openLightbox(index)); 
             mediaElement.addEventListener('keydown', function(event) {

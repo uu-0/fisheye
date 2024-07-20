@@ -5,19 +5,12 @@ const backgroundModal = document.querySelector(".background-modal");
 const closeBtn =   document.querySelector("#closeBtn");
 
 function openModal() {
-
     backgroundModal.style.display = "block";
 	modal.style.display = "block";
     closeBtn.focus();
 }
 
 function closeModal() {
-    modal.setAttribute('aria-hidden', 'true');
-
-    modal.removeAttribute('tabindex', '0'); 
-    main.setAttribute('aria-hidden', 'false');
-    header.setAttribute('aria-hidden', 'false');
-
     backgroundModal.style.display = "none";
     modal.style.display = "none";
 }

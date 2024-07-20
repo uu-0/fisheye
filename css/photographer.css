@@ -123,15 +123,10 @@ form input {
     color: #901C1C;
 }
 
-.media {
-    margin: 10px;
-    padding: 10px;
-    text-align: center;
-    max-width: 300px;
-}
 
-.media img,
-.media video {
+
+.media {
+    margin-top: 50px;
     border-radius: 5px;
     width: 350px;
     height: 300px;
@@ -163,10 +158,55 @@ form input {
     z-index: 998;
 }
 
+#closeBtn{
+    background-image: url('../assets/icons/close.svg');
+    border: none;
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    background-position: center;
+}
+
 .modal textarea {
     border-radius: 5px;
     border: none;
     resize: none;
     width: 100%;
     height: 170px;
+}
+
+.lightbox{
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.lightbox img{
+    width: auto;
+    height: 600px;
+    object-fit: cover;
+}
+
+.close-button{
+    position: absolute;
+    right: 250px;
+    top: 49px;
+}
+
+.back-button{
+    position: absolute;
+    top: 50%;
+    left: 250px;
+}
+
+.next-button{
+    position: absolute;
+    top: 50%;
+    right: 250px;
 }

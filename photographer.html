@@ -10,10 +10,10 @@
   </head>
   <body>
     <div class="background-modal"></div>
-    <header id="header" aria-hidden="true">
+    <header id="header">
       <img src="assets/images/logo.png" class="logo" />
     </header>
-    <main id="main" aria-hidden="true">
+    <main id="main">
       <div class="photograph-header">
         <div class="photograph-informations"></div>
         <button class="contact_button" onclick="openModal()">Contactez-moi</button>
@@ -22,13 +22,14 @@
       </div>
     </main>
     <div class="photograph-tarif"></div>
-    <div class="lightbox" aria-hidden="false" role="dialog" aria-describedby="Affichage de l'image">
-      <button class="close-button">x</button>
-      <button class="back-button"><</button>
-      <button class="next-button">></button>
+    <div class="lightbox" role="dialog" aria-describedby="Affichage de l'image">
+      <button tabindex="0" class="close-button"></button>
+      <button  class="back-button"></button>
+      <div class="lightbox-content"></div>
+      <button class="next-button"></button>
     </div>
     <div id="contact_modal">
-			<div class="modal" aria-hidden="false" role="dialog" aria-describedby="Contactez-nous">
+			<div class="modal"  role="dialog" aria-describedby="Contactez-nous">
 				<header>
           <h2>Contactez-moi</h2>
           <button id="closeBtn" tabindex="-1" onclick="closeModal()"></button>

@@ -2,11 +2,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const URLparam = new URL(document.location).searchParams;
     const id = URLparam.get("id");
 
-    // Récupère les données
+    //récupère les données
     async function getPhotographers() {
         try {
-            const response = await fetch('data/photographers.json'); // chemin fichier JSON
-            const data = await response.json(); // converti la réponse en un objet javascript
+            const response = await fetch('data/photographers.json'); //chemin fichier JSON
+            const data = await response.json(); //converti la réponse en un objet JavaScript
             return data;
         } catch (error) {
             console.error('Erreur lors de la récupération des données:', error);
@@ -15,15 +15,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     const photographersData = await getPhotographers();
 
-    // Récupère le photographe correspondant
+    //récupère le photographe correspondant
     const photographerInfo = photographersData.photographers.find((photographer) => 
         Number(id) === Number(photographer.id));
     
-    // Récupère les médias correspondants
+    //récupère les médias du photographe correspondant
     const photographerMedias = photographersData.media.filter((media) => 
         Number(id) === Number(media.photographerId));
     
-    // Affiche les informations du photographe
+    //affiche les informations du photographe
     function displayPhotographerInfo(photographer) {
         const photographerHeader = document.querySelector(".photograph-header");
         const photographerInformations = document.querySelector(".photograph-informations");
@@ -56,30 +56,25 @@ document.addEventListener("DOMContentLoaded", async () => {
         photographerTarif.appendChild(tarif);
     }
 
-    // Factory pour les médias
+    //factory pour les médias
     function mediaFactory(media, index) {
-        const mediaElement = document.createElement('div');
-        mediaElement.classList.add('media');
-        
         let mediaContent;
 
-        // Si le média est une image
+        //si le média est une image
         if (media.image) {
             mediaContent = document.createElement('img');
             mediaContent.setAttribute('src', `assets/medias/${media.photographerId}/${media.image}`);
             mediaContent.setAttribute('alt', media.title);
             mediaContent.setAttribute('tabindex', '0');
             mediaContent.setAttribute('data-index', index); //data-index pour naviguer entre les images de la lightbox
-            mediaContent.addEventListener('click', () => openLightbox()); //event listener pour ouvrir lightbox
         } 
-        // Si le média est une vidéo
+        //si le média est une vidéo
         else if (media.video) {
             mediaContent = document.createElement('video');
             mediaContent.setAttribute('alt', media.title);
             mediaContent.setAttribute('tabindex', '0'); 
             mediaContent.setAttribute('data-index', index); //data-index pour naviguer entre les images de la lightbox
-            mediaContent.addEventListener('click', () => openLightbox()); //event listener pour ouvrir lightbox
-
+            
             const source = document.createElement('source');
             source.setAttribute('src', `assets/medias/${media.photographerId}/${media.video}`);
             source.setAttribute('type', 'video/mp4');
@@ -87,33 +82,77 @@ document.addEventListener("DOMContentLoaded", async () => {
             mediaContent.appendChild(source);
         }
         
-        const title = document.createElement('h2');
-        title.textContent = media.title;
-        
-        mediaElement.appendChild(mediaContent);
-        mediaElement.appendChild(title);
+        mediaContent.classList.add('media');
 
-        return mediaElement;
+        return mediaContent;
     }
 
     //affiche les médias du photographe
     function displayPhotographerMedias(medias) {
         const mediaSection = document.querySelector(".media-section");
-        
-        medias.forEach((media) => {
-            const mediaElement = mediaFactory(media);
+        medias.forEach((media, index) => {
+            const mediaElement = mediaFactory(media, index);
             mediaSection.appendChild(mediaElement);
+            //event listener pour ouvrir lightbox et affiché le média correspondant
+            mediaElement.addEventListener('click', () => openLightbox(index)); 
+            mediaElement.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    openLightbox(index)
+                }
+            });
+
         });
     }
 
     //ouvre la lightbox et affiche le média sélectionné
-    function openLightbox() {
+    function openLightbox(index) {
         const lightbox = document.querySelector('.lightbox');
+        
+        let currentIndex = index;
+
+        //met à jour l'affichage de la lightbox
+        function updateLightbox() {
+
+            const lightboxContent = document.querySelector('.lightbox-content');
+            lightboxContent.innerHTML = '';//vide le contenu de la lightbox
+
+            const mediaElement = mediaFactory(photographerMedias[currentIndex]);
+            lightboxContent.appendChild(mediaElement);
+
+        }
+
+        lightbox.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+
+        updateLightbox();
+
         const closeBtn = document.querySelector('.close-button');
-        lightbox.style.display = 'block';
 
         closeBtn.addEventListener('click', () => {
             lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        closeBtn.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                lightbox.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        const nextBtn = document.querySelector('.next-button');
+        const backBtn = document.querySelector('.back-button');
+
+        //event listener sur le bouton next pour naviguer entre les médias 
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % photographerMedias.length;
+            updateLightbox();
+        });
+
+        //event listener sur le bouton back pour naviguer entre les médias 
+        backBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + photographerMedias.length) % photographerMedias.length;
+            updateLightbox();
         });
     }
 

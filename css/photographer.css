@@ -120,12 +120,10 @@ form input {
 
 .media-section h1{
     text-align: left;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 400;
     color: #901C1C;
 }
-
-
 
 .media {
     margin-top: 50px;
@@ -144,11 +142,20 @@ form input {
     height: 60px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    display: flex;
+    justify-content: baseline;
+    align-items: center;
 }
 
 .photograph-tarif p {
+    margin-left: 30px;
     font-size: 24px;
     font-weight: 600;
+}
+
+.photograph-tarif img {
+    margin-left: 10px;
+    margin-right: 90px;
 }
 
 .background-modal{
@@ -204,8 +211,8 @@ form input {
 
 .close-button{
     position: absolute;
-    right: 200px;
-    top: 49px;
+    right: 180px;
+    top: 70px;
     background-image: url('../assets/icons/closeLightbox.svg');
     border: none;
     background-color: transparent;
@@ -228,11 +235,27 @@ form input {
 }
 
 .back-button{
-    left: 200px;
+    left: 180px;
     background-image: url('../assets/icons/backBtn.svg');
 }
 
 .next-button{
     background-image: url('../assets/icons/nextBtn.svg');
-    right: 200px;
+    right: 180px;
+}
+
+.media-information{
+    position: relative;
+}
+
+.media-like{
+    position: absolute;
+    right: 120px;
+    margin-right: 40px;
+}
+
+.media-information img{
+    position: absolute;
+    right: 130px;
+    top: 17px;
 }

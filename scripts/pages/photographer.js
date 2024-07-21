@@ -197,8 +197,14 @@ document.addEventListener("DOMContentLoaded", async () => {
             const lightboxContent = document.querySelector('.lightbox-content');
             lightboxContent.innerHTML = '';//vide le contenu de la lightbox
 
+            //crée le média, vidéo ou image
             const mediaElement = mediaFactory(photographerMedias[currentIndex]);
             lightboxContent.appendChild(mediaElement);
+
+            //crée un élément pour le titre du média
+            const titleMedia = document.createElement('h1');
+            titleMedia.textContent = photographerMedias[currentIndex].title; 
+            lightboxContent.appendChild(titleMedia);
 
         }
 

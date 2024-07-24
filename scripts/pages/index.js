@@ -24,11 +24,6 @@
         const { photographers } = await getPhotographers();
         displayData(photographers);
     }
-
-    
-
-    
-    document.addEventListener('keydown', handleKeyDown);
     
     init();
 

@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     //récupère les données
     async function getPhotographers() {
         try {
-            const response = await fetch('data/photographers.json'); //chemin fichier JSON
+            const response = await fetch('fisheye/data/photographers.json'); //chemin fichier JSON
             const data = await response.json(); //converti la réponse en un objet JavaScript
             return data;
         } catch (error) {
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         
         //pp
         const img = document.createElement('img');
-        img.setAttribute('src', `assets/photographers/${photographer.portrait}`);
+        img.setAttribute('src', `fisheye/assets/photographers/${photographer.portrait}`);
         img.setAttribute('alt', photographer.name);
         img.setAttribute('tabindex', '0');
 
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         likes.setAttribute('id', 'total-likes'); 
         likes.textContent = `${totalLikes}`;
         const likeImg = document.createElement("img");
-        likeImg.setAttribute('src', `assets/icons/heartB.svg`);
+        likeImg.setAttribute('src', `fisheye/assets/icons/heartB.svg`);
 
         //tarif
         const tarif = document.createElement("p");
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         //si le média est une image
         if (media.image) {
             mediaContent = document.createElement('img');
-            mediaContent.setAttribute('src', `assets/medias/${media.photographerId}/${media.image}`);
+            mediaContent.setAttribute('src', `fisheye/assets/medias/${media.photographerId}/${media.image}`);
             mediaContent.setAttribute('alt', media.title);
             mediaContent.setAttribute('tabindex', '0'); 
             mediaContent.setAttribute('data-index', index); //data-index pour naviguer entre les images de la lightbox
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             mediaContent.setAttribute('data-index', index); //data-index pour naviguer entre les images de la lightbox
             
             const source = document.createElement('source');
-            source.setAttribute('src', `assets/medias/${media.photographerId}/${media.video}`);
+            source.setAttribute('src', `fisheye/assets/medias/${media.photographerId}/${media.video}`);
             source.setAttribute('type', 'video/mp4');
             
             mediaContent.appendChild(source);
@@ -137,7 +137,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             //image heart like
             const mediaLikeImg = document.createElement('img');
-            mediaLikeImg.setAttribute('src', `assets/icons/heart.svg`);
+            mediaLikeImg.setAttribute('src', `fisheye/assets/icons/heart.svg`);
 
             mediaInformations.appendChild(mediaTitle);
             mediaInformations.appendChild(numberLike);

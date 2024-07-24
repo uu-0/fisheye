@@ -8,7 +8,7 @@ function photographerTemplate(data) {
     const { name, portrait, city, country, tagline, price, id } = data;
 
     //la var picture est définie pour contenir le chemin de l'image du photographe
-    const picture = `fisheye/assets/photographers/${portrait}`;
+    const picture = `assets/photographers/${portrait}`;
 
     function getUserCardDOM() {
 

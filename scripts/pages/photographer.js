@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
     const URLparam = new URL(document.location).searchParams;
     const id = URLparam.get("id");
+    let isLightboxOpen = false;
 
     //récupère les données
     async function getPhotographers() {
@@ -218,6 +219,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     //ouvre la lightbox et affiche le média sélectionné
     function openLightbox(index, medias) {
+        let isLightboxOpen = true;
+
         const lightbox = document.querySelector('.lightbox');
         
         let currentIndex = index;
@@ -243,9 +246,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         updateLightbox();
 
         //ferme la lightbox
-        document.querySelector('.close-button').addEventListener('click', () => {
+        function closeLightbox(){
             lightbox.style.display = 'none';
             document.body.style.overflow = 'auto';
+            isLightboxOpen = false;
+        }
+
+        //ferme la lightbox
+        document.querySelector('.close-button').addEventListener('click', () => {
+            closeLightbox()
         });
 
         //navigue vers le média suivant
@@ -259,6 +268,20 @@ document.addEventListener("DOMContentLoaded", async () => {
             currentIndex = (currentIndex - 1 + medias.length) % medias.length;
             updateLightbox();
         });
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                return closeLightbox()
+            }if(event.key === 'ArrowLeft'){
+                currentIndex = (currentIndex - 1 + medias.length) % medias.length;
+                return updateLightbox();
+            }if(event.key === 'ArrowRight'){
+                currentIndex = (currentIndex + 1) % medias.length;
+                return updateLightbox();
+            }
+        });
+
+       
     }
 
     //vérifie que le photographe existe

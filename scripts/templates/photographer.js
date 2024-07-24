@@ -17,7 +17,7 @@ function photographerTemplate(data) {
        
         //link
         const link = document.createElement('a');
-        link.setAttribute("href", `fisheye/photographer.html?id=${id}`)
+        link.setAttribute("href", `photographer.html?id=${id}`)
 
         //picture
         const pImg = document.createElement('img');

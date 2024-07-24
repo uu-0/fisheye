@@ -169,11 +169,27 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
         displayPhotographerMedias(sortedMedias);
     }
-    
-    //ajoute des event listeners aux boutons de tri
-    document.querySelector("#sort-title").addEventListener("click", () => sortMedias('title'));
-    document.querySelector("#sort-date").addEventListener("click", () => sortMedias('date'));
-    document.querySelector("#sort-likes").addEventListener("click", () => sortMedias('likes'));
+
+    document.querySelector('.sort').addEventListener('change', function(event) {
+    //valeur de l'option sélectionnée
+    const selectedValue = event.target.value;
+    //id de l'option sélectionnée
+    const selectedOptionId = event.target.selectedOptions[0].id;
+
+    switch (selectedOptionId) {
+        case 'sort-likes':
+            sortMedias('likes');
+            break;
+        case 'sort-date':
+            sortMedias('date');
+            break;
+        case 'sort-title':
+            sortMedias('title');
+            break;
+        default:
+            console.log('Option inconnue');
+        }
+    });
 
     //incrémente/décrémente les likes
     function updateLike(mediaLikeElement, mediaLikeImg) {
@@ -194,7 +210,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         mediaLikeElement.textContent = likesCount;
-        
+
         //met à jour le total des likes affiché
         const totalLikesElement = document.getElementById('total-likes');
         totalLikesElement.textContent = `${totalLikes}`;
@@ -252,4 +268,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else {
         console.error('Photographe non trouvé');
     }
+   
+    
 });

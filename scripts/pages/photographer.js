@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     //récupère les données
     async function getPhotographers() {
         try {
-            const response = await fetch('data/photographers.json'); //chemin fichier JSON
+            const response = await fetch('fisheye/data/photographers.json'); //chemin fichier JSON
             const data = await response.json(); //converti la réponse en un objet JavaScript
             return data;
         } catch (error) {

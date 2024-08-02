@@ -93,7 +93,10 @@ document.addEventListener("DOMContentLoaded", async () => {
             mediaContent.setAttribute('alt', media.title);
             mediaContent.setAttribute('tabindex', '0'); 
             mediaContent.setAttribute('data-index', index); //data-index pour naviguer entre les images de la lightbox
-            
+            if (isLightboxOpen) {
+                mediaContent.setAttribute('controls', ''); // ajout des contrôles à la balise vidéo si la lightbox est ouverte
+            }
+
             const source = document.createElement('source');
             source.setAttribute('src', `assets/medias/${media.photographerId}/${media.video}`);
             source.setAttribute('type', 'video/mp4');
@@ -172,8 +175,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
     document.querySelector('.sort').addEventListener('change', function(event) {
-    //valeur de l'option sélectionnée
-    const selectedValue = event.target.value;
     //id de l'option sélectionnée
     const selectedOptionId = event.target.selectedOptions[0].id;
 
@@ -219,7 +220,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     //ouvre la lightbox et affiche le média sélectionné
     function openLightbox(index, medias) {
-        let isLightboxOpen = true;
+        isLightboxOpen = true;
 
         const lightbox = document.querySelector('.lightbox');
         

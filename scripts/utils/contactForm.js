@@ -1,7 +1,6 @@
-const header = document.querySelector("header");
-const main = document.querySelector("main");
 const modal = document.getElementById("contact_modal");
 const backgroundModal = document.querySelector(".background-modal");
+const contactBtn = document.querySelector(".contact_button");
 const closeBtn =   document.querySelector("#closeBtn");
 
 function openModal() {
@@ -14,6 +13,9 @@ function closeModal() {
     backgroundModal.style.display = "none";
     modal.style.display = "none";
 }
+
+contactBtn.addEventListener('click', () => openModal());
+closeBtn.addEventListener('click', () => closeModal());
 
 
 document.querySelector('form').addEventListener('submit', function(event) {

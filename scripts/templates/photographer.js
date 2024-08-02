@@ -4,6 +4,7 @@
  * @param {*} data 
  * @returns name, picture, getUserCardDOM
  */
+// eslint-disable-next-line
 function photographerTemplate(data) {
     const { name, portrait, city, country, tagline, price, id } = data;
 
